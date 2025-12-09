@@ -1,0 +1,15 @@
+<div class="history-container">
+
+  <div class="intro-card">
+    <h1 class="history-title">Histórico</h1>
+    <p class="history-subtitle">Registro das alterações do ciclo de vida dos equipamentos.</p>
+  </div>
+
+  <app-list
+    [columns]="columns"
+    [pageResponse]="pageResponse"
+    [loading]="loading"
+    (pageChange)="loadPage($event)"
+  ></app-list>
+
+</div>

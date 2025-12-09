@@ -1,0 +1,121 @@
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+nav {
+  width: 80%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 3rem;
+}
+
+nav::before {
+  content: 'Gestão de Locações';
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  letter-spacing: -0.025em;
+}
+
+nav a {
+  position: relative;
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+  letter-spacing: 0.01em;
+}
+
+nav a:hover {
+  color: #111827;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #3b82f6;
+  transition: width 0.3s ease;
+}
+
+nav a.active {
+  color: #3b82f6;
+}
+
+nav a.active::after {
+  width: 100%;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  header {
+    background: #111827;
+    border-bottom-color: #1f2937;
+  }
+
+  nav::before {
+    color: #f9fafb;
+  }
+
+  nav a {
+    color: #9ca3af;
+  }
+
+  nav a:hover {
+    color: #f9fafb;
+  }
+
+  nav a.active {
+    color: #60a5fa;
+  }
+
+  nav a.active::after {
+    background: #60a5fa;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem;
+    height: 56px;
+    gap: 2rem;
+  }
+
+  nav::before {
+    font-size: 1rem;
+  }
+
+  nav a {
+    font-size: 0.813rem;
+  }
+}
+
+.logout {
+  margin-left: auto;
+  cursor: pointer;
+  color: #9ca3af;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+}
+
+.logout:hover {
+  color: #f9fafb;
+}

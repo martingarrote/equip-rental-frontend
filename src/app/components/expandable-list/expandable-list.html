@@ -1,0 +1,99 @@
+<div class="list-container">
+  @if (loading) {
+    <div class="loading-state">
+      <p>Carregando...</p>
+    </div>
+  }
+
+  @if (!loading && data.length === 0) {
+    <div class="empty-state">
+      <p>Nenhum registro encontrado</p>
+    </div>
+  }
+
+  @if (!loading && data.length > 0) {
+    <div class="table-wrapper">
+      <table class="data-table">
+        <thead>
+        <tr>
+          <th class="expand-column"></th>
+          @for (column of columns; track column.field) {
+            <th>{{ column.header }}</th>
+          }
+        </tr>
+        </thead>
+        <tbody>
+          @for (row of data; track row.id) {
+            <!-- Main row -->
+            <tr class="data-row" (click)="toggleRow(row)">
+              <td class="expand-column">
+                <button class="expand-btn" type="button">
+                  <svg
+                    [class.rotated]="isRowExpanded(row)"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                  >
+                    <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </button>
+              </td>
+              @for (column of columns; track column.field) {
+                <td>{{ getCellValue(row, column) }}</td>
+              }
+            </tr>
+
+            <!-- Expanded content row -->
+            @if (isRowExpanded(row)) {
+              <tr class="expanded-row">
+                <td [attr.colspan]="columns.length + 1" class="expanded-cell">
+                  <div class="expanded-content">
+                    @if (expandedContentTemplate) {
+                      <ng-container *ngTemplateOutlet="expandedContentTemplate; context: { $implicit: row }">
+                      </ng-container>
+                    } @else {
+                      <p class="no-template">Nenhum template de conteúdo expandido fornecido</p>
+                    }
+                  </div>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+
+      @if (totalPages > 1) {
+        <div class="pagination">
+          <div class="pagination-controls">
+            <button
+              class="page-btn"
+              (click)="onPageChange(currentPage - 1)"
+              [disabled]="pageResponse?.first"
+            >
+              &lt;
+            </button>
+
+            @for (page of visiblePages; track page) {
+              <button
+                class="page-btn page-number"
+                [class.active]="page === currentPage"
+                (click)="onPageChange(page)"
+              >
+                {{ page }}
+              </button>
+            }
+
+            <button
+              class="page-btn"
+              (click)="onPageChange(currentPage + 1)"
+              [disabled]="pageResponse?.last"
+            >
+              &gt;
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

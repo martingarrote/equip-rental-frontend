@@ -1,0 +1,52 @@
+<div class="dashboard-container">
+
+  <div class="stats-card">
+
+    <div class="header-row">
+      <div>
+        <h1 class="dashboard-title">Dashboard</h1>
+        <p class="dashboard-subtitle">Visão geral dos equipamentos</p>
+      </div>
+
+      <!-- KPIs compactos -->
+      <div class="kpi-inline">
+        <div class="kpi-item">
+          <p class="kpi-value">{{ totalEquipment }}</p>
+          <p class="kpi-label">Total</p>
+        </div>
+
+        <div class="kpi-item">
+          <p class="kpi-value">{{ availableEquipment }}</p>
+          <p class="kpi-label">Disponíveis</p>
+        </div>
+
+        <div class="kpi-item">
+          <p class="kpi-value">{{ reservedEquipment }}</p>
+          <p class="kpi-label">Reservados</p>
+        </div>
+
+        <div class="kpi-item">
+          <p class="kpi-value">{{ rentedEquipment }}</p>
+          <p class="kpi-label">Locados</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Ações rápidas -->
+  <div class="actions-container">
+    <button class="action-button" (click)="createContract()">Novo Contrato</button>
+    <button class="action-button" (click)="returnEquipment()">Devolução de Equipamento</button>
+  </div>
+
+  <app-list
+    [columns]="columns"
+    [pageResponse]="pageResponse"
+    [loading]="loading"
+    (pageChange)="loadPage($event)"
+  ></app-list>
+
+</div>
+
+

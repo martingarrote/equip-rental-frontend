@@ -1,0 +1,21 @@
+<div class="customer-home-container">
+
+  <div class="intro-card">
+    <h1 class="customer-home-title">Meus Contratos</h1>
+    <p class="customer-home-subtitle">
+      Visualização dos contratos associados à sua conta.
+    </p>
+  </div>
+
+  <div class="actions-container">
+    <button class="action-button" (click)="requestContract()">Novo Contrato</button>
+  </div>
+
+  <app-list
+    [columns]="contractColumns"
+    [pageResponse]="contractsPage"
+    [loading]="loadingContracts"
+    (pageChange)="loadContracts($event)"
+  ></app-list>
+
+</div>

@@ -1,0 +1,43 @@
+<div class="contracts-container">
+
+  <div class="intro-card">
+    <h1 class="contracts-title">Contratos</h1>
+    <p class="contracts-subtitle">
+      Gerenciamento dos contratos e suas locações associadas.
+    </p>
+  </div>
+
+  <app-expandable-list
+    [columns]="contractColumns"
+    [pageResponse]="contractsPage"
+    [loading]="loadingContracts"
+    (pageChange)="loadContracts($event)"
+    (rowExpand)="onContractExpand($event)"
+  >
+
+    <ng-template #expandedContent let-contract>
+      <div class="rentals-section">
+
+        <h3 class="rentals-title">Locações do Contrato #{{ contract.id }}</h3>
+
+        @if (contract.loadingRentals) {
+          <p class="loading-text">Carregando locações...</p>
+        }
+        @else if (contract.rentalsPage) {
+          <app-list
+            [columns]="rentalColumns"
+            [pageResponse]="contract.rentalsPage"
+            [loading]="false"
+            (pageChange)="loadRentals(contract.id, $event)"
+          ></app-list>
+        }
+        @else {
+          <p class="empty-text">Nenhuma locação encontrada</p>
+        }
+
+      </div>
+    </ng-template>
+
+  </app-expandable-list>
+
+</div>

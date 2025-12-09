@@ -1,0 +1,16 @@
+<header>
+  <nav>
+    @if (hasRole('CUSTOMER')) {
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+    }
+
+    @if (hasRole('EMPLOYEE')) {
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/contracts" routerLinkActive="active">Contratos</a>
+      <a routerLink="/history" routerLinkActive="active">Histórico</a>
+    }
+
+    <span class="logout" (click)="logout()">Logout</span>
+
+  </nav>
+</header>
