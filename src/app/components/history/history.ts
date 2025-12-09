@@ -13,6 +13,7 @@ export class HistoryComponent implements OnInit {
 
   columns: ColumnConfig[] = [
     { field: 'equipmentName', header: 'Equipamento' },
+    { field: 'equipmentSerialNumber', header: 'Número de série' },
     { field: 'userName', header: 'Usuário' },
     { field: 'action', header: 'Ação' },
     {
